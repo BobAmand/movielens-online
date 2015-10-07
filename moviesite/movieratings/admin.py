@@ -1,15 +1,16 @@
 from django.contrib import admin
-from .models import Rater, Movies, Ratings
+from .models import Rater, Movie, Rating
 
 # Register your models here.
 class RaterDisplay(admin.ModelAdmin):
-    pass
-class MoviesDisplay(admin.ModelAdmin):
-    pass
-class RatingsDisplay(admin.ModelAdmin):
-    pass
-#    list_display = ['age', 'occupation']
+    list_display = ['age', 'occupation']
+
+class MovieDisplay(admin.ModelAdmin):
+    list_display = ['movie_id', 'title']
+
+class RatingDisplay(admin.ModelAdmin):
+    list_display = ['user_id', 'item_id', 'rating']
 
 admin.site.register(Rater, RaterDisplay)
-admin.site.register(Movies, MoviesDisplay)
-admin.site.register(Ratings, RatingsDisplay)
+admin.site.register(Movie, MovieDisplay)
+admin.site.register(Rating, RatingDisplay)
