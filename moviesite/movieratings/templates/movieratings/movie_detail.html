@@ -1,5 +1,16 @@
-movie_detail.html
+<!-- movie_detail.html
 
 title,
-averate rating
+averate rating -->
+
 <h2>{{movie.title}}</h2>
+
+<h4>Average rating: {{movie.average_rating|Floatformat}} &9733;</h4>
+<ul>
+  {% for rating in movie.ratin_set.all %}
+    <li>{{ rating.rater }}{{ rating.stars }} </li>
+  {% endfor %}
+</ul>
+
+#this needs more to close off the loop.
+#want to display rating and user
