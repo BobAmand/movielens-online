@@ -53,7 +53,8 @@ class Movie(models.Model):
     # war = models.BooleanField()
     # western = models.BooleanField()
     def average_rating(self):
-        return self.rating_set.aggregate(models.Avg('rating'))['rating__avg']
+        return self.rating_set.aggregate(models.Avg('stars'))['stars__avg']
+        # 'stars__avg' is dynamically calculating the average.
 
     def __str__(self):
         return self.title
