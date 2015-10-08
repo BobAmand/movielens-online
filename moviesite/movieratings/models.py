@@ -101,7 +101,7 @@ def load_ml_users():
             }
             users.append(user)
 
-    with open('users.json', 'w') as f:
+    with open('movieratings/fixtures/users.json', 'w') as f:
         f.write(json.dumps(users))
 
 def load_ml_movies():
@@ -125,7 +125,7 @@ def load_ml_movies():
             }
             movies.append(movie)
 
-    with open('movies.json', 'w') as f:
+    with open('movieratings/fixtures/movies.json', 'w') as f:
         f.write(json.dumps(movies))
 
 def load_ml_ratings():
@@ -150,7 +150,7 @@ def load_ml_ratings():
             }
             ratings.append(rating)
 
-    with open('star.json', 'w') as f:
+    with open('movieratings/fixtures/star.json', 'w') as f:
         f.write(json.dumps(ratings))
 
 
