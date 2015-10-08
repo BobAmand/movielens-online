@@ -23,12 +23,12 @@ class Rater(models.Model):
     zip_code = models.CharField(max_length=5, null=True)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 class Movie(models.Model):
     class Meta:
         verbose_name_plural = 'movies'
-    movie_id = models.IntegerField(default=0)
+    #movie_id = models.IntegerField(default=0)
     title = models.CharField(max_length=255, null=True)
     # release_date = models.DateField()
     # video_release_date = models.DateField()
@@ -56,7 +56,7 @@ class Movie(models.Model):
         return self.rating_set.aggregate(models.Avg('rating'))['rating__avg']
 
     def __str__(self):
-        self.title
+        return self.title
 
 class Rating(models.Model):
     class Meta:
