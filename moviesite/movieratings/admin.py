@@ -9,7 +9,7 @@ class MovieAdmin(admin.ModelAdmin):
     list_display = ['title', 'average_rating']
 
 class RatingAdmin(admin.ModelAdmin):
-    list_display = ['user_id', 'item_id', 'rating']
+    list_display = ['user', 'movie', 'stars']
 
 admin.site.register(Rater, RaterAdmin)
 admin.site.register(Movie, MovieAdmin)
