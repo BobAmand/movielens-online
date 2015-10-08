@@ -70,24 +70,29 @@ class Rating(models.Model):
     def __str__(self):
         return 'User {} rates {} with {} stars.'.format(self.user, self.movie, self.stars)
 
-#
-# def load_ml_data():
-#     import csv
-#     import json
-#
-#     users = []
-#     with open('ml-1m/users.dat') as f:
-#         re.
-#
-# #        reader = csv.DictReader([line.replace('::', '\t') for line in f], fieldnames=
-#
-#     for row in reader:
-#         user = {
-#          'fields': {
-#             'gender': row[['Gender'],
-#             'age': row['Age'].
-#             'occupation': row['Occupation'],
-#             'zipcode': row['Zip-code'],
-#         },
-#         'model': 'moviedb.Rater',
-#         'pk': int(row['User_id'])
+
+def load_ml_data():
+    import csv
+    import json
+    import re
+
+    users = []
+    with open('ml-1m/users.dat', encoding='Windows-1252') as f:
+        reader = csv.DictReader([line.replace('::', '\t') for line in f],
+                                fieldnames='UserID::Gender::Age::Occupation::Zip-code'.split('::'),
+                                delimiter='\t')
+        for row in reader:
+            user = {
+                'fields': {
+                    'gender': row['Gender'],
+                    'age': row['Age'],
+                    'occupation': row['Occupation'],
+                    'zipcode': row['Zip-code'],
+                },
+                'model': 'movieratings.Rater',
+                'pk': int(row['UserID']),
+            }
+
+            users.append(user)
+
+)
