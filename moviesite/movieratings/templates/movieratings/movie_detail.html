@@ -7,7 +7,7 @@ averate rating -->
 
 <h4>Average rating: {{movie.average_rating|Floatformat}} &9733;</h4>
 <ul>
-  {% for rating in movie.ratin_set.all %}
+  {% for rating in movie.rating_set.all %}
     <li>{{ rating.rater }}{{ rating.stars }} </li>
   {% endfor %}
 </ul>
