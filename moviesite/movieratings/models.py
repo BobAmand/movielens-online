@@ -2,8 +2,6 @@ from django.db import models
 #from django.contrib.auth.models import Rater
 
 # Create your models here.
-
-
 class Rater(models.Model):
     # id is automatic
     age = models.PositiveIntegerField()
@@ -21,7 +19,7 @@ class Rater(models.Model):
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
     occupation = models.IntegerField(default=0)
-    zip_code = models.CharField(max_length=5, null=True)
+    zipcode = models.CharField(max_length=5, null=True)
 
     def __str__(self):
         return str(self.id)
@@ -80,7 +78,6 @@ class Rating(models.Model):
 def load_ml_users():
     import csv
     import json
-    import re
 
     users = []
     with open('ml-1m/users.dat') as f:
@@ -107,7 +104,6 @@ def load_ml_users():
 def load_ml_movies():
     import csv
     import json
-    import re
 
     movies = []
     with open('ml-1m/movies.dat', encoding='Windows-1252') as f:
@@ -131,7 +127,6 @@ def load_ml_movies():
 def load_ml_ratings():
     import csv
     import json
-    import re
 
     ratings = []
     with open('ml-1m/ratings.dat') as f:
