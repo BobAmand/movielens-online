@@ -29,8 +29,8 @@ class Movie(models.Model):
 
     class Meta:
         verbose_name_plural = 'movies'
-    movie_id = models.PositiveIntegerField(default=0)
-    movie = models.CharField(max_length=255, null=True)
+    # movie_id = models.PositiveIntegerField(default=0)
+    title = models.CharField(max_length=255, null=True)
     # release_date = models.DateField()
     # video_release_date = models.DateField()
     # IMDB_URL = models.URLField(max_length=100)
@@ -59,15 +59,16 @@ class Movie(models.Model):
         # 'stars__avg' is dynamically calculating the average.
 
     def __str__(self):
-        return self.movie
+        return self.title
 
 
 class Rating(models.Model):
 
     class Meta:
         verbose_name_plural = 'ratings'
+
     user = models.ForeignKey(Rater)
-    movie = models.ForeignKey(Movie)
+    movie = models.ForeignKey(Movie) #trace the movie vs movieID
     stars = models.PositiveSmallIntegerField()
     #time_stamp = models.DateTimeField()
 
@@ -114,10 +115,11 @@ def load_ml_movies():
         for row in reader:
             movie = {
                 'fields': {
-                    'movie_id': row['MovieID'],
-                    'movie': row['Title']
+                    # 'movie_id': row['MovieID'],
+                    'title': row['Title']
                 },
                 'model': 'movieratings.Movie',
+                'pk': int(row['MovieID']),
             }
             movies.append(movie)
 
@@ -128,22 +130,25 @@ def load_ml_ratings():
     import csv
     import json
 
+    count = 1
     ratings = []
     with open('ml-1m/ratings.dat') as f:
         reader = csv.DictReader([line.replace('::', '\t') for line in f],
-                                fieldnames='UserID::MovieID::Rating::Timestamp'.split(
+                                fieldnames='UserID::aMovieID::Rating::Timestamp'.split(
                                     '::'),
                                 delimiter='\t')
         for row in reader:
+            print("reading row {}".format(count))
             rating = {
                 'fields': {
                     'user': row['UserID'],
-                    'movie': row['MovieID'],
+                    'movie': row['aMovieID'],  #refers to fieldnames
                     'stars': row['Rating']
                 },
-                'model': 'movieratings.Movie',
+                'model': 'movieratings.Rating',
             }
             ratings.append(rating)
+            count +=1
 
     with open('movieratings/fixtures/stars.json', 'w') as f:
         f.write(json.dumps(ratings))
