@@ -29,8 +29,8 @@ class Movie(models.Model):
 
     class Meta:
         verbose_name_plural = 'movies'
-    #movie_id = models.IntegerField(default=0)
-    title = models.CharField(max_length=255, null=True)
+    movie_id = models.PositiveIntegerField(default=0)
+    movie = models.CharField(max_length=255, null=True)
     # release_date = models.DateField()
     # video_release_date = models.DateField()
     # IMDB_URL = models.URLField(max_length=100)
@@ -59,7 +59,7 @@ class Movie(models.Model):
         # 'stars__avg' is dynamically calculating the average.
 
     def __str__(self):
-        return self.title
+        return self.movie
 
 
 class Rating(models.Model):
@@ -114,8 +114,8 @@ def load_ml_movies():
         for row in reader:
             movie = {
                 'fields': {
-                    'movie': row['MovieID'],
-                    'title': row['Title']
+                    'movie_id': row['MovieID'],
+                    'movie': row['Title']
                 },
                 'model': 'movieratings.Movie',
             }
@@ -145,7 +145,7 @@ def load_ml_ratings():
             }
             ratings.append(rating)
 
-    with open('movieratings/fixtures/star.json', 'w') as f:
+    with open('movieratings/fixtures/stars.json', 'w') as f:
         f.write(json.dumps(ratings))
 
 
