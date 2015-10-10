@@ -6,6 +6,8 @@ Three models are contained to control
    Rater = the individual rating the movie.
    Movie = the movie title.
    Rating = links the rater and movie by star rating.
+
+Id assumed by Django; rater_id needs to be a string.
 '''
 class Rater(models.Model):   #simplified models
 
@@ -40,6 +42,7 @@ class Movie(models.Model):
     def average_rating(self):
         return self.rating_set.aggregate(models.Avg('stars'))['stars__avg']
         # 'stars__avg' is dynamically calculating the average.
+
     def __str__(self):
         return self.title
 
@@ -55,4 +58,90 @@ class Rating(models.Model):
     def __str__(self):
         return 'User {} rates {} with {} stars.'.format(self.citizen, self.movie, self.stars)
 
-        
+'''
+The 'fixtures' dir established as a parking space for the .json files.
+The 'fixtures' dir is just below the App and at same level as 'migrations'
+'''
+
+def load_raters_dat():
+    import csv
+    import json
+
+    citizens = []
+    with open('ml-1m/users.dat') as f:
+        reader = csv.DictReader([line.replace('::', '\t') for line in f],
+                                fieldnames=
+                                'UserID::Gender::Age::Occupation::Zip-code'.
+                                split('::'),
+                                delimiter='\t')
+
+        for row in reader:
+            citizen = {
+                'fields': {
+                    'gender': row['Gender'],
+                    'age': row['Age'],
+                    'occupation': row['Occupation'],
+                    'zipcode': row['Zip-code']
+                },
+                'model': 'movieapp.Rater',
+                'pk': int(row['UserID']),
+            }
+            citizens.append(citizen)
+            # appends citizen data to citizens list as a dict.
+            # following writes the citizens dict into a json file.
+    with open('movieapp/fixtures/rater.json', 'w') as f:
+        f.write(json.dumps(citizens))
+
+
+def load_movies_dat():
+    import csv
+    import json
+
+    movies = []
+    with open('ml-1m/movies.dat') as f:
+        reader = csv.DictReader([line.replace('::', '\t') for line in f],
+                                fieldnames=
+                                'MovieID::Title::Genres'.split('::'),
+                                delimiter='\t')
+
+        for row in reader:
+            movie = {
+                'fields': {
+                    'title': row['Title']
+                },
+                'model': 'movieapp.Movie',
+                'pk': int(row['MovieID']),
+            }
+            movies.append(movie)
+            # appends movie data to movies list as a dict
+            # following writes the movies dict into a json file.
+    with open('movieapp/fixtures/movies.json', 'w') as f:
+        f.write(json.dumps(movies))
+
+
+def load_ratings_dat():
+    import csv
+    import json
+
+    ratings = []
+    with open('ml-1m/ratings.dat') as f:
+        reader = csv.DictReader([line.replace('::', '\t') for line in f],
+                                fieldnames=
+                                'UserID::MovieID::Rating::Timestamp'.
+                                split('::'),
+                                delimiter='\t')
+
+        for row in reader:
+            rating = {
+                'fields': {
+                    'rater': row['UserID'],
+                    'movie': row['MovieID'],
+                    'stars': row['Rating']
+                },
+                'model': 'movieapp.Rating',
+            }
+            ratings.append(rating)
+            # appends rating data to ratings list as a dict
+            # following writes the ratings dict into a json file
+    with open('movieapp/fixtures/stars.json', 'w') as f:
+        f.write(json.dumps(ratings))
