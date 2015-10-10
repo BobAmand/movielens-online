@@ -96,9 +96,10 @@ def load_raters_dat():
 def load_movies_dat():
     import csv
     import json
-
+                    # added encoding "Windows-1252" to overcome
+                    # a UnicodedDecodeError: 'utf-8'
     movies = []
-    with open('ml-1m/movies.dat') as f:
+    with open('ml-1m/movies.dat', encoding='Windows-1252') as f:
         reader = csv.DictReader([line.replace('::', '\t') for line in f],
                                 fieldnames=
                                 'MovieID::Title::Genres'.split('::'),
