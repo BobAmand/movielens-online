@@ -29,7 +29,7 @@ class Rater(models.Model):   #simplified models
     zipcode = models.CharField(max_length=5, null=True)
 
     def __str__(self):
-        return (str(self.id))
+        return str(self.id)
 
 class Movie(models.Model):
 
