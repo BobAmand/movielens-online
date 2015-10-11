@@ -91,7 +91,7 @@ def load_raters_dat():
             # following writes the citizens dict into a json file.
     with open('movieapp/fixtures/rater.json', 'w') as f:
         f.write(json.dumps(citizens))
-
+            # the 'w' in open will overwrite the data at function run.
 
 def load_movies_dat():
     import csv
@@ -135,7 +135,7 @@ def load_ratings_dat():
         for row in reader:
             rating = {
                 'fields': {
-                    'rater': row['UserID'],
+                    'citizen': row['UserID'],
                     'movie': row['MovieID'],
                     'stars': row['Rating']
                 },
@@ -146,3 +146,12 @@ def load_ratings_dat():
             # following writes the ratings dict into a json file
     with open('movieapp/fixtures/stars.json', 'w') as f:
         f.write(json.dumps(ratings))
+
+
+def load_dat_data():
+    load_raters_dat()
+    print("Raters data has been loaded as json to fixtures dir.")
+    load_movies_dat()
+    print("Movies data has been loaded as json to fixtures dir.")
+    load_ratings_dat()
+    print("Ratings data has been loaded as json to fixtures dir.")
