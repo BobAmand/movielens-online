@@ -11,5 +11,12 @@ def movie_detail(request, movie_id):
 
 def rater_detail(request, rater_id):
     rater = Rater.objects.get(pk=rater_id)    # lookup from Movie dict
+    movie_ratings = []
+    for rating in rater.rating_set.all():
+        movie_ratings.append({                 # list of dicts w movies + stars
+            'movie': rating.movie,
+            'stars': '\u2605' * rating.stars,
+        })
     return render(request, 'movieapp/rater_detail.html',
-                  {'rater': rater})          # passing the movie object in.
+                  {'rater': rater,
+                  'movie_ratings': movie_ratings}) # Added movieratings.
