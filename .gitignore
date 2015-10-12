@@ -3,3 +3,6 @@
 *.sqlite3
 ml-1m/
 fixtures/
+*.DS_Store
+*.pyc
+__pycache__
