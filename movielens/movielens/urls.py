@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from citizens import views as citizen_views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'', include('movieapp.urls')),   # looks in app for url code.
+    url(r'^login/$', citizen_views.login, name="citizen_login"),
+    url(r'^', include('movieapp.urls')),   # looks in app for url code.
 ]
