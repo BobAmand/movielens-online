@@ -9,7 +9,7 @@
 
   <form method="POST" action="{% url 'citizen_login' %}">
     {% csrf_token %}
-    Username: <input type="text" name="citizenname">
+    Username: <input type="text" name="citizenname" value="{{ citizenname }}">
     <br>
     Password: <input type="password" name="password">
     <br>
