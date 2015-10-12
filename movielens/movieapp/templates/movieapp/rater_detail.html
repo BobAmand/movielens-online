@@ -14,7 +14,8 @@
 </dl>
 <ul>
   {% for rating in movie_ratings %}
-  <li><a href="{% url 'movie_detail' rating.movie.pk %}">{{ rating.movie }}</a> ; {{ rating.stars }}</li>
+  <li><a href="{% url 'movie_detail' rating.movie.pk %}">
+    {{ rating.movie }}</a> ; RATED (1 to 5): {{ rating.stars }}</li>
   {% endfor %}
 
 </ul>

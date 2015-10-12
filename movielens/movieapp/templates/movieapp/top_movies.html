@@ -1,0 +1,12 @@
+
+<h2>The Top Movies are:</h2>
+
+<ul>
+{% for movie in movies %}
+  <li><a href="{% url 'movie_detail' movie.pk %}">
+  {{ movie.title }}</a> ; Average rating(1 to 5):
+  {{ movie.rating__stars__avg|floatformat }}</li>
+
+{% endfor %}
+
+</ul>

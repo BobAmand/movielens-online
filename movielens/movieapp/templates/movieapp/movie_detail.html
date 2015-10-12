@@ -1,10 +1,11 @@
 
 <h2>{{ movie.title }}</h2>
 
-<h4>Average number of stars: {{ movie.average_rating }} &#9733;</h4>
+<h4>Average number of stars: {{ movie.average_rating|floatformat }} &#9733;</h4>
 
 <ul>  <!--rating_set.all = python-->
 {% for rating in movie.rating_set.all %}
-  <li><a href="{% url 'rater_detail' rating.citizen.pk %}">{{ rating.citizen }}</a>: {{ rating.stars }}</li>
+  <li>The citizen, <a href="{% url 'rater_detail' rating.citizen.pk %}">
+    {{ rating.citizen }}</a> gave a rating of: {{ rating.stars }}</li>
 {% endfor %}
 </ul>
