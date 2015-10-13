@@ -26,10 +26,11 @@ def rater_detail(request, rater_id):
 
 
 def all_movies(request):
-    movies = Movie.objects.annotate(num_ratings=Count('rating'))
+    movies = Movie.objects.annotate(num_ratings=Count('rating')) \
+                          .order_by('-num_ratings')[:20]
     return render(request,
                   'movieapp/all_movies_detail.html', {'movies': movies})
-                  # to list all movies by number of viewers
+                  # top 20 movies by the number of raters
 
 def top_movies(request):
     # movie_list = []    -too many hits on database (every Database)
@@ -37,7 +38,7 @@ def top_movies(request):
     #     if type(movie.average_rating()) == float:
     #         movie_list.append(movie)
     popular_movies = Movie.objects.annotate(num_ratings=Count('rating')) \
-                                  .filter(num_ratings__gte=50)
+                                #   .filter(num_ratings__gte=50)
     # more dunder magic.
     # Advanced Database optimization from class:
     movies = popular_movies.annotate(Avg('rating__stars')) \
