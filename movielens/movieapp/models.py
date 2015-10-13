@@ -43,6 +43,11 @@ class Movie(models.Model):
         return self.rating_set.aggregate(models.Avg('stars'))['stars__avg']
         # 'stars__avg' is dynamically calculating the average.
 
+    def num_rating(self):
+        return self.rating_set.aggregate(models.Count('citizen'))['citizen__count']
+        # attempt to determine how many raters occurred per movie.
+
+
     def __str__(self):
         return self.title
 

@@ -11,6 +11,7 @@ def movie_detail(request, movie_id):
     return render(request, 'movieapp/movie_detail.html',
                   {'movie': movie})          # passing the movie object in.
 
+
 def rater_detail(request, rater_id):
     rater = Rater.objects.get(pk=rater_id)    # lookup from Movie dict
     movie_ratings = []
@@ -23,6 +24,12 @@ def rater_detail(request, rater_id):
                   {'rater': rater,
                    'movie_ratings': movie_ratings})  # Added movieratings
 
+
+def all_movies(request):
+    movies = Movie.objects.annotate(num_ratings=Count('rating'))
+    return render(request,
+                  'movieapp/all_movies_detail.html', {'movies': movies})
+                  # to list all movies by number of viewers
 
 def top_movies(request):
     # movie_list = []    -too many hits on database (every Database)
