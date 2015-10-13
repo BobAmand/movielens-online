@@ -18,8 +18,9 @@ from django.contrib import admin
 from citizens import views as citizen_views
 
 urlpatterns = [
-    # url(r'^movieratings/', include('movieratings.urls')),
     url(r'^admin/', include(admin.site.urls)),
-#    url(r'^login/$', citizen_views.login, name="citizen_login"),
-    url(r'^', include('movieapp.urls')),   # looks in app for url code.
+    url(r'^register/$', citizen_views.user_register, name='user_register'),
+    url(r'^', include('django.contrib.auth.urls')),
+    url(r'^', include('movieapp.urls'))   # looks in app for url code.
+    
 ]
