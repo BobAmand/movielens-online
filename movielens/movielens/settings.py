@@ -58,7 +58,7 @@ ROOT_URLCONF = 'movielens.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -90,7 +90,8 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC'    # Raleigh = UTC minus 4 hrs (with Daylight savings)
+                        # UTC minus 5 normal.
 
 USE_I18N = True
 
