@@ -5,7 +5,7 @@
 
 <ul>  <!--rating_set.all = python-->
 {% for rating in movie.rating_set.all %}
-  <li>The citizen, <a href="{% url 'rater_detail' rating.citizen.pk %}">
+  <li>The citizen, <a href="{% url 'rater_detail' rater.pk %}">
     {{ rating.citizen }}</a> gave a rating of: {{ rating.stars }}</li>
 {% endfor %}
 </ul>

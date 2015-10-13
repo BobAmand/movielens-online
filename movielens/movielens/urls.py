@@ -19,12 +19,11 @@ from citizens import views as citizen_views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^login/$', citizen_views.user_login, name='user_login')
+    # url(r'^login/$', citizen_views.user_login, name='user_login')
     # url(r'^register/$', citizen_views.user_register, name='user_register'),
     # url(r'^logout/$', citizen_views.user_logout, name='user_logout'),
     # url(r'^account/', include('django.contrib.auth.urls')),
     # url(r'^', include('movieapp.urls'))   # looks in app for url code.
+    url(r'^movieapp/', include('movieapp.urls')),
     url(r'^citizen/', include('citizens.urls'))
-    
-
 ]

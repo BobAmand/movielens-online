@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.http import Http404
 #from xxxxxxxx
 from .models import Profile   # from within Citizens.models
-from .forms import UserForm, CitizenForm
+from .forms import UserForm, ProfileForm
 # Create your views here.
 
 
