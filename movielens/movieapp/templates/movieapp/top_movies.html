@@ -1,11 +1,14 @@
 
-<h2>The Top Movies are:</h2>
+<h2>The Top 20 Movies by Average Rating:</h2>
 
 <ul>
 {% for movie in movies %}
   <li><a href="{% url 'movie_detail' movie.pk %}">
   {{ movie.title }}</a> ; Average rating(1 to 5):
-  {{ movie.rating__stars__avg|floatformat }}</li>
+  {{ movie.rating__stars__avg|floatformat }}
+  <!-- ; Popularity/Viewers:
+  {{ movie.num_rating|floatformat }} -->
+  </li>
 
 {% endfor %}
 
