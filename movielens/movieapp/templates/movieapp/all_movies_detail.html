@@ -1,0 +1,12 @@
+
+<h2>Full Movie List</h2>
+
+<ul>
+{% for movie in movies %}
+  <li><a href="{% url 'movie_detail' movie.pk %}">
+  {{ movie.title }}</a>
+  <!-- ; Popularity/Viewers:
+  {{ movie.num_rating|floatformat }} -->
+</li>
+{% endfor %}
+  </ul
