@@ -1,0 +1,18 @@
+{#
+  {% block content %}
+  <h2>Login</h2>
+
+{#
+  {% if failed %}
+    <h3>ERROR LOGGING IN!</h3>
+  {% endif %}
+#}
+  <form method="POST" action="{% url 'user_login' %}">
+    Username: <input type="text" name="username">
+    <br>
+    Password: <input type="password" name="password">
+    <br>
+
+    <input type="submit" value="Login">
+  </form>
+#}
