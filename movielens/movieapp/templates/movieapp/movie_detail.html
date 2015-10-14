@@ -3,9 +3,9 @@
 
 <h4>Average number of stars: {{ movie.average_rating|floatformat }} &#9733;</h4>
 
-<ul>  <!--rating_set.all = python-->
+<ul>  <!--rating_set.all = python; can loop over all the ratings.-->
 {% for rating in movie.rating_set.all %}
-  <li>The citizen, <a href="{% url 'rater_detail' rater.pk %}">
+  <li>The citizen, <a href="{% url 'rater_detail' rater.citizen.pk %}">
     {{ rating.citizen }}</a> gave a rating of: {{ rating.stars }}</li>
 {% endfor %}
 </ul>
