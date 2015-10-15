@@ -1,6 +1,6 @@
-from django.shortcuts import render
-# redirect, get_object_or_404
-# from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
+# , get_object_or_404
+from django.contrib.auth import authenticate, login, logout
 # from django.contrib.auth.decorators import login_required
 # from django.contrib import messages
 # from django.http import Http404
@@ -11,34 +11,29 @@ from django.shortcuts import render
 
 
 def login(request):
-    return render(request,
-                   'citizens/login.html',
-                   {})
-
-
-
-    #     username = request.POST['username']
-    #     password = request.POST['password']
-    #
-    #     user = authenticate(username=username, password=password)
-    #
-    #     if user is not None and user.is_active:
-    #         login(request, user)
-    #         return redirect('movie_detail')
-    #     else:
-    #         return render(request,
-    #                       'citizens/login.html',
-    #                       {'failed': True,
-    #                        'username': username})
-    #
     # return render(request,
-    #               'citizens/login.html')
+    #                'citizens/login.html',
+    #                {})
+        # username = request.POST['username']
+        # password = request.POST['password']
+        #
+        # user = authenticate(username=username, password=password)
+        #
+        # if user is not None and user.is_active:
+        #     login(request, user)
+        #     return redirect('movie_detail')
+        # else:
+        #     return render(request,
+        #                   'citizens/login.html',
+        #                   {'failed': True,
+        #                    'username': username})
 
-
+        return render(request,
+                      'citizens/login.html')
 
 
 # def user_register(request):
-#     if request.methon == 'POST':
+#     if request.method == 'POST':
 #         form = UserForm(request.POST)
 #
 #         if form.is_valid():
@@ -62,14 +57,14 @@ def login(request):
 #         form = UserForm()
 #     return render(request, 'citizens/register.html',
 #                   {'form': form})
-#
-#
-# def user_logout(request):
-#     logout(request)
-#
-#     return redirect('rater_detail')
-#
-#
+
+
+def user_logout(request):
+    logout(request)
+
+    return redirect('rater_detail')
+
+
 # @login_required
 # def edit_profile(request):
 #     try:
@@ -87,8 +82,8 @@ def login(request):
 #
 #     return render(request, 'citizens/edit_profile.html',
 #                   {'form': profile_form})
-#
-#
+
+
 # def profile_detail(request, profile_id=None, profile_username=None):
 #     if profile_id:
 #         profile = get_object_or_404(Profile, pk=profile_id)
