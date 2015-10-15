@@ -62,7 +62,7 @@ def login(request):
 def user_logout(request):
     logout(request)
 
-    return redirect('rater_detail')
+    return (str('Bye!'))
 
 
 # @login_required
