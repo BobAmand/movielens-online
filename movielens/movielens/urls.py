@@ -18,6 +18,7 @@ from django.contrib import admin
 from citizens import views as citizens_views
 
 urlpatterns = [
+    #  url(r'$', - TO DISPLAY LOGIN VIEW -),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', citizens_views.login, name='user_login'),
     # url(r'^register/$', citizen_views.user_register, name='user_register'),
