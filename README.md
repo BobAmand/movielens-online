@@ -1,5 +1,18 @@
 # MovieLens Online
 
+15-Oct-2015:
+Current functionality:
+When runserver ie: $python manage.py runserver
+At 127:0.0.1.8000 prompt, can run:
+ - admin      -> standard login panel; id: admin, pw: admin, em: admin@admin.com
+ - ratings    -> top 20 movies by average rating across all raters.
+ - popularity -> top 20 movies by number of raters.
+ - movie/<N>  -> enter a number to get the movie + ratings
+ - rater/<N>  -> enter a number to get the rater
+ - login
+
+
+
 ## Description
 
 Create an interface in Django to the [MovieLens dataset][movielens].
